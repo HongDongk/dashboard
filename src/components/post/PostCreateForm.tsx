@@ -52,7 +52,7 @@ export default function PostCreateForm() {
       <div className={styles.formWrapper}>
         <div className={styles.header}>
           <h1 className={styles.title}>새 게시글 작성</h1>
-          <p className={styles.description}>다른 사용자들과 공유하고 싶은 내용을 작성해보세요</p>
+          <p className={styles.description}>공유하고 싶은 내용을 작성해보세요</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import styles from './PostDetail.module.css';
 import { Post, PostDetailProps } from '@/types/post';
 import { PostStorageService } from '@/services/postService';
+import CommentList from '../comment/CommentList';
 
 export default function PostDetail({ postId }: PostDetailProps) {
   const [post, setPost] = useState<Post | null>(null);
@@ -126,6 +127,7 @@ export default function PostDetail({ postId }: PostDetailProps) {
             </button>
           </nav>
         </header>
+        <CommentList postId={parseInt(postId)} />
       </article>
     </main>
   );

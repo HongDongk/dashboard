@@ -46,9 +46,7 @@ export class CommentStorageService {
       id: newId,
       postId: commentData.postId,
       content: commentData.content,
-      author: commentData.author,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
     };
 
     const updatedComments = [...comments, newComment];

@@ -1,4 +1,5 @@
 import { Post, PostCreateRequest } from '@/types/post';
+import { CommentStorageService } from './commentService';
 
 const POSTS_STORAGE_KEY = 'dashboard_posts';
 
@@ -45,7 +46,6 @@ export class PostStorageService {
       title: postData.title,
       content: postData.content,
       createdAt: new Date().toISOString().split('T')[0],
-      updatedAt: new Date().toISOString().split('T')[0],
     };
 
     const updatedPosts = [newPost, ...posts];
@@ -64,6 +64,7 @@ export class PostStorageService {
     }
 
     this.savePosts(filteredPosts);
+    CommentStorageService.deleteCommentsByPostId(id);
     return true;
   }
 }
