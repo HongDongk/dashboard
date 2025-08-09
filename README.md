@@ -52,12 +52,7 @@ dashboard/
 
 ### 설치 및 실행
 
-1. **저장소 클론**
-
-   ```bash
-   git clone <repository-url>
-   cd dashboard
-   ```
+1. **압축 해제**
 
 2. **의존성 설치**
 
