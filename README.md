@@ -21,7 +21,7 @@
 ```
 dashboard/
 ├── public/                 # 정적 파일
-├── src/                    # 소스 코드
+├── src/                    
 │   ├── app/                # Next.js App Router 페이지
 │   │   ├── page.tsx        # 메인 페이지
 │   │   ├── layout.tsx      # 공통 레이아웃
