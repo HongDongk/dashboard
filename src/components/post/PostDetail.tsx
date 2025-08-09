@@ -53,39 +53,39 @@ export default function PostDetail({ postId }: PostDetailProps) {
 
   if (isLoading) {
     return (
-      <div className={styles.container}>
-        <div className={styles.loadingState}>
+      <main className={styles.container}>
+        <section className={styles.loadingState}>
           <div className={styles.loadingSpinner}>⏳</div>
           <p>게시글을 불러오는 중...</p>
-        </div>
-      </div>
+        </section>
+      </main>
     );
   }
 
   if (!post) {
     return (
-      <div className={styles.container}>
-        <div className={styles.errorState}>
+      <main className={styles.container}>
+        <section className={styles.errorState}>
           <div className={styles.errorIcon}>❌</div>
           <h2 className={styles.errorTitle}>게시글을 찾을 수 없습니다</h2>
           <p className={styles.errorText}>요청하신 게시글이 존재하지 않거나 삭제되었을 수 있습니다.</p>
           <Link href="/" className={styles.backButton}>
             목록으로 돌아가기
           </Link>
-        </div>
-      </div>
+        </section>
+      </main>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.postWrapper}>
+    <main className={styles.container}>
+      <article className={styles.postWrapper}>
         <header className={styles.postHeader}>
-          <div className={styles.titleSection}>
+          <section className={styles.titleSection}>
             <h1 className={styles.postTitle}>{post.title}</h1>
-          </div>
+          </section>
 
-          <main className={styles.postContent}>
+          <section className={styles.postContent}>
             <div className={styles.contentWrapper}>
               {post.content.split('\n').map((line, index) => (
                 <p key={index} className={styles.contentParagraph}>
@@ -93,15 +93,17 @@ export default function PostDetail({ postId }: PostDetailProps) {
                 </p>
               ))}
             </div>
-            <div className={styles.postMeta}>
+            <footer className={styles.postMeta}>
               <div className={styles.metaInfo}>
                 <span className={styles.metaLabel}>작성일</span>
-                <span className={styles.metaValue}>{post.createdAt}</span>
+                <time className={styles.metaValue} dateTime={post.createdAt}>
+                  {post.createdAt}
+                </time>
               </div>
-            </div>
-          </main>
+            </footer>
+          </section>
 
-          <div className={styles.actionButtons}>
+          <nav className={styles.actionButtons}>
             <button onClick={handleDelete} className={styles.deleteButton} disabled={isDeleting}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M2 4H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -122,21 +124,9 @@ export default function PostDetail({ postId }: PostDetailProps) {
               </svg>
               {isDeleting ? '삭제 중...' : '삭제'}
             </button>
-          </div>
+          </nav>
         </header>
-
-        {/* 하단 네비게이션 */}
-        <footer className={styles.postFooter}>
-          <div className={styles.footerActions}>
-            <Link href="/" className={styles.listButton}>
-              목록으로
-            </Link>
-            <Link href="/posts/create" className={styles.createButton}>
-              새 글 작성
-            </Link>
-          </div>
-        </footer>
-      </div>
-    </div>
+      </article>
+    </main>
   );
 }
