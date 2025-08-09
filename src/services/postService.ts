@@ -28,11 +28,11 @@ export class PostStorageService {
     }
   }
 
-  // // ID로 게시글 조회
-  // static getPostById(id: number): Post | null {
-  //   const posts = this.getPosts();
-  //   return posts.find((post) => post.id === id) || null;
-  // }
+  // ID로 게시글 조회
+  static getPostById(id: number): Post | null {
+    const posts = this.getPosts();
+    return posts.find((post) => post.id === id) || null;
+  }
 
   // 새 게시글 생성
   static createPost(postData: PostCreateRequest): Post {
@@ -54,41 +54,16 @@ export class PostStorageService {
     return newPost;
   }
 
-  // 게시글 수정
-  // static updatePost(id: number, postData: Partial<PostCreateRequest>): Post | null {
-  //   const posts = this.getPosts();
-  //   const postIndex = posts.findIndex((post) => post.id === id);
-
-  //   if (postIndex === -1) return null;
-
-  //   const updatedPost = {
-  //     ...posts[postIndex],
-  //     ...postData,
-  //     updatedAt: new Date().toISOString().split('T')[0],
-  //   };
-
-  //   posts[postIndex] = updatedPost;
-  //   this.savePosts(posts);
-
-  //   return updatedPost;
-  // }
-
   // 게시글 삭제
   static deletePost(id: number): boolean {
     const posts = this.getPosts();
     const filteredPosts = posts.filter((post) => post.id !== id);
 
     if (filteredPosts.length === posts.length) {
-      return false; // 삭제할 게시글이 없음
+      return false;
     }
 
     this.savePosts(filteredPosts);
     return true;
-  }
-
-  // 스토리지 초기화 (개발용)
-  static clearAllPosts(): void {
-    if (typeof window === 'undefined') return;
-    localStorage.removeItem(POSTS_STORAGE_KEY);
   }
 }

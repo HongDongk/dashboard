@@ -3,7 +3,7 @@ import './globals.css';
 import MainHeader from '@/components/common/MainHeader';
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
+  title: '커뮤니티 게시판',
   description: '게시판 과제입니다',
 };
 

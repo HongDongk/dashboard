@@ -1,0 +1,242 @@
+.container {
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.postWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 게시글 헤더 */
+.postHeader {
+  padding: 32px 40px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titleSection {
+  margin-bottom: 24px;
+}
+
+.postTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+  margin: 0 0 16px 0;
+  word-break: break-word;
+}
+
+/* 게시글 내용 */
+.postContent {
+  margin-top: 24px;
+}
+
+.contentWrapper {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #374151;
+  max-width: none;
+  margin-bottom: 24px;
+}
+
+.contentParagraph {
+  margin: 0 0 20px 0;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.contentParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.postMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid #f3f4f6;
+  margin-top: 24px;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metaLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.metaValue {
+  font-size: 0.875rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* 액션 버튼 */
+.actionButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #fecaca;
+  color: #b91c1c;
+}
+
+.deleteButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 하단 네비게이션 */
+.postFooter {
+  padding: 32px 40px;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listButton,
+.createButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.listButton {
+  background: white;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+}
+
+.listButton:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.createButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.createButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* 로딩 상태 */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px;
+  text-align: center;
+}
+
+.loadingSpinner {
+  font-size: 3rem;
+  margin-bottom: 24px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 에러 상태 */
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px;
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  margin: 40px 20px;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.errorTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 16px 0;
+}
+
+.errorText {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0 0 32px 0;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}

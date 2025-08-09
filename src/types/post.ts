@@ -12,6 +12,10 @@ export interface PostItemProps {
   createdAt: string;
 }
 
+export interface PostDetailProps {
+  postId: string;
+}
+
 export interface PostCreateRequest {
   title: string;
   content: string;
