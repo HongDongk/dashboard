@@ -1,0 +1,87 @@
+.postItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.postItem:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.author {
+  font-weight: 500;
+}
+
+.dot {
+  color: #d1d5db;
+}
+
+.date {
+  color: #9ca3af;
+}
+
+.arrow {
+  color: #9ca3af;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.postItem:hover .arrow {
+  color: #6b7280;
+  transform: translateX(2px);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .postItem {
+    padding: 14px 16px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .meta {
+    font-size: 0.8rem;
+  }
+
+  .arrow {
+    margin-left: 12px;
+  }
+}
