@@ -4,10 +4,10 @@
 
 ### Frontend
 
-- **Next.js** 15.4.6 - React 프레임워크 (App Router 사용)
-- **React** 19.1.0 - UI 라이브러리
-- **TypeScript** 5.x - 타입 안전성 보장
-- **CSS Modules** - 컴포넌트 스타일링
+- **Next.js** 15.4.6 
+- **React** 19.1.0 
+- **TypeScript** 5.x 
+- **CSS Modules** 
 
 ### 개발 도구
 
