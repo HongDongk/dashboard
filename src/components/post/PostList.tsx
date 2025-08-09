@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import PostItem from './PostItem';
 import styles from './PostList.module.css';
@@ -24,7 +24,7 @@ export default function PostList({ searchQuery }: PostListProps) {
     filterPosts();
   }, [posts, searchQuery]);
 
-  const loadPosts = async () => {
+  const loadPosts = useCallback(async () => {
     try {
       const loadedPosts = PostStorageService.getPosts();
       setPosts(loadedPosts);
@@ -33,7 +33,7 @@ export default function PostList({ searchQuery }: PostListProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   const filterPosts = () => {
     if (!searchQuery.trim()) {

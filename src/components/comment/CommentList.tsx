@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
 import styles from './CommentList.module.css';
@@ -15,7 +15,7 @@ export default function CommentList({ postId }: CommentListProps) {
     loadComments();
   }, [postId]);
 
-  const loadComments = () => {
+  const loadComments = useCallback(() => {
     try {
       const postComments = CommentStorageService.getCommentsByPostId(postId);
       setComments(postComments);
@@ -24,7 +24,7 @@ export default function CommentList({ postId }: CommentListProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [postId]);
 
   const handleCommentAdded = () => {
     loadComments();

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from './PostDetail.module.css';
@@ -18,7 +18,7 @@ export default function PostDetail({ postId }: PostDetailProps) {
     loadPost();
   }, [postId]);
 
-  const loadPost = async () => {
+  const loadPost = useCallback(async () => {
     try {
       const foundPost = PostStorageService.getPostById(parseInt(postId));
       setPost(foundPost || null);
@@ -27,7 +27,7 @@ export default function PostDetail({ postId }: PostDetailProps) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [postId]);
 
   const handleDelete = async () => {
     if (!post) return;
