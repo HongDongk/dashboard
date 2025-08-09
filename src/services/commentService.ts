@@ -68,7 +68,7 @@ export class CommentStorageService {
     return true;
   }
 
-  // 특정 게시글의 모든 댓글 삭제 (게시글 삭제 시 사용)
+  // 특정 게시글의 모든 댓글 삭제
   static deleteCommentsByPostId(postId: number): void {
     const comments = this.getComments();
     const filteredComments = comments.filter((comment) => comment.postId !== postId);

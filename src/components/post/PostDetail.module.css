@@ -13,7 +13,6 @@
   overflow: hidden;
 }
 
-/* 게시글 헤더 */
 .postHeader {
   padding: 32px 40px;
   background: white;
@@ -33,7 +32,6 @@
   word-break: break-word;
 }
 
-/* 게시글 내용 */
 .postContent {
   margin-top: 24px;
 }
@@ -83,7 +81,6 @@
   font-weight: 600;
 }
 
-/* 액션 버튼 */
 .actionButtons {
   display: flex;
   gap: 12px;
@@ -117,7 +114,6 @@
   cursor: not-allowed;
 }
 
-/* 로딩 상태 */
 .loadingState {
   display: flex;
   flex-direction: column;
@@ -142,7 +138,6 @@
   }
 }
 
-/* 에러 상태 */
 .errorState {
   display: flex;
   flex-direction: column;
