@@ -1,20 +1,43 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PostItem from './PostItem';
 import styles from './PostList.module.css';
 import { Post } from '@/types/post';
-
-const mockPosts: Post[] = [
-  { id: 1, title: '첫 번째 게시글입니다', createdAt: '2024-01-15' },
-  { id: 2, title: 'Next.js 개발 팁 공유드립니다', createdAt: '2024-01-14' },
-  { id: 3, title: '프론트엔드 개발자 모집합니다', createdAt: '2024-01-13' },
-  { id: 4, title: 'React Hook 사용법에 대해 질문있습니다', createdAt: '2024-01-12' },
-  { id: 5, title: '코드 리뷰 부탁드립니다', createdAt: '2024-01-11' },
-];
+import { PostStorageService } from '@/services/postService';
 
 export default function PostList() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
+  const loadPosts = async () => {
+    try {
+      const loadedPosts = PostStorageService.getPosts();
+      setPosts(loadedPosts);
+    } catch (error) {
+      console.error('게시글 로드 실패:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className={styles.loadingState}>
+        <div className={styles.loadingSpinner}>⏳</div>
+        <p>게시글을 불러오는 중...</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.postList}>
-      {mockPosts.length === 0 ? (
+      {posts.length === 0 ? (
         <div className={styles.emptyState}>
           <div className={styles.emptyIcon}>📝</div>
           <p className={styles.emptyText}>아직 작성된 게시글이 없습니다</p>
@@ -23,7 +46,7 @@ export default function PostList() {
           </Link>
         </div>
       ) : (
-        mockPosts.map((post) => <PostItem key={post.id} id={post.id} title={post.title} createdAt={post.createdAt} />)
+        posts.map((post) => <PostItem key={post.id} id={post.id} title={post.title} createdAt={post.createdAt} />)
       )}
     </div>
   );

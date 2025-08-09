@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import styles from './PostItem.module.css';
-import { Post } from '@/types/post';
+import { PostItemProps } from '@/types/post';
 
-export default function PostItem({ id, title, createdAt }: Post) {
+export default function PostItem({ id, title, createdAt }: PostItemProps) {
   return (
     <Link href={`/posts/${id}`} className={styles.postItem}>
       <div className={styles.content}>
