@@ -7,13 +7,22 @@ import styles from './PostList.module.css';
 import { Post } from '@/types/post';
 import { PostStorageService } from '@/services/postService';
 
-export default function PostList() {
+interface PostListProps {
+  searchQuery: string;
+}
+
+export default function PostList({ searchQuery }: PostListProps) {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     loadPosts();
   }, []);
+
+  useEffect(() => {
+    filterPosts();
+  }, [posts, searchQuery]);
 
   const loadPosts = async () => {
     try {
@@ -26,6 +35,20 @@ export default function PostList() {
     }
   };
 
+  const filterPosts = () => {
+    if (!searchQuery.trim()) {
+      setFilteredPosts(posts);
+      return;
+    }
+
+    const filtered = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.content.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredPosts(filtered);
+  };
+
   if (isLoading) {
     return (
       <div className={styles.loadingState}>
@@ -35,18 +58,26 @@ export default function PostList() {
     );
   }
 
+  const isSearching = searchQuery.trim() !== '';
+
   return (
     <div className={styles.postList}>
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className={styles.emptyState}>
-          <div className={styles.emptyIcon}>📝</div>
-          <p className={styles.emptyText}>아직 작성된 게시글이 없습니다</p>
-          <Link href="/posts/create" className={styles.emptyAction}>
-            첫 번째 게시글을 작성해보세요
-          </Link>
+          <div className={styles.emptyIcon}>{isSearching ? '🔍' : '📝'}</div>
+          <p className={styles.emptyText}>
+            {isSearching ? `"${searchQuery}"에 대한 검색 결과가 없습니다` : '아직 작성된 게시글이 없습니다'}
+          </p>
+          {!isSearching && (
+            <Link href="/posts/create" className={styles.emptyAction}>
+              첫 번째 게시글을 작성해보세요
+            </Link>
+          )}
         </div>
       ) : (
-        posts.map((post) => <PostItem key={post.id} id={post.id} title={post.title} createdAt={post.createdAt} />)
+        filteredPosts.map((post) => (
+          <PostItem key={post.id} id={post.id} title={post.title} createdAt={post.createdAt} />
+        ))
       )}
     </div>
   );

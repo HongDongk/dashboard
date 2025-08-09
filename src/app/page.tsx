@@ -1,7 +1,6 @@
 import styles from './page.module.css';
 import Link from 'next/link';
-import PostList from '@/components/post/PostList';
-import SearchBox from '@/components/search/SearchBox';
+import SearchContainer from '@/components/search/SearchContainer';
 
 export default function Home() {
   return (
@@ -15,15 +14,7 @@ export default function Home() {
           </Link>
         </section>
 
-        <section className={styles.actionsSection}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>최근 게시글</h2>
-            <SearchBox />
-          </div>
-          <div className={styles.actionGrid}>
-            <PostList />
-          </div>
-        </section>
+        <SearchContainer />
       </main>
     </div>
   );

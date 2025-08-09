@@ -3,16 +3,22 @@
 import { useState } from 'react';
 import styles from './SearchBox.module.css';
 
-export default function SearchBox() {
+interface SearchBoxProps {
+  onSearch: (query: string) => void;
+}
+
+export default function SearchBox({ onSearch }: SearchBoxProps) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const query = searchQuery.trim();
+    onSearch(query);
   };
 
   const handleClear = () => {
     setSearchQuery('');
+    onSearch('');
   };
 
   return (
@@ -34,7 +40,7 @@ export default function SearchBox() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder={'게시글 제목을 검색하세요..'}
+          placeholder={'키워드를 검색하세요...'}
           className={styles.searchInput}
         />
 
