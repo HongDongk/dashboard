@@ -1,14 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CommentForm from '../CommentForm';
+import { CommentStorageService } from '@/services/commentService';
 
 jest.mock('@/services/commentService', () => ({
   CommentStorageService: {
     createComment: jest.fn(),
   },
 }));
-
-import { CommentStorageService } from '@/services/commentService';
 
 describe('CommentForm', () => {
   const mockOnCommentAdded = jest.fn();
@@ -64,7 +63,7 @@ describe('CommentForm', () => {
       content: '테스트 댓글',
     });
     expect(mockOnCommentAdded).toHaveBeenCalled();
-    expect(textarea).toHaveValue(''); // 폼이 초기화되는지 확인
+    expect(textarea).toHaveValue('');
   });
 
   it('댓글 작성 실패 시 에러 메시지가 표시되는지 확인', async () => {

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PostCreateForm from '../PostCreateForm';
+import { PostStorageService } from '@/services/postService';
 
 const mockPush = jest.fn();
 jest.mock('next/navigation', () => ({
@@ -15,7 +16,6 @@ jest.mock('@/services/postService', () => ({
   },
 }));
 
-import { PostStorageService } from '@/services/postService';
 const mockCreatePost = PostStorageService.createPost as jest.MockedFunction<typeof PostStorageService.createPost>;
 
 describe('PostCreateForm', () => {

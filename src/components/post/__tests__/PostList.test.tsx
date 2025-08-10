@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import PostList from '../PostList';
 import { Post } from '@/types/post';
+import { PostStorageService } from '@/services/postService';
 
 jest.mock('@/services/postService', () => ({
   PostStorageService: {
@@ -18,7 +19,6 @@ jest.mock('next/link', () => {
   };
 });
 
-import { PostStorageService } from '@/services/postService';
 const mockGetPosts = PostStorageService.getPosts as jest.MockedFunction<typeof PostStorageService.getPosts>;
 
 describe('PostList', () => {

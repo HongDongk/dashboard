@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchContainer from '../SearchContainer';
+import { PostStorageService } from '@/services/postService';
 
 jest.mock('@/services/postService', () => ({
   PostStorageService: {
@@ -18,7 +19,6 @@ jest.mock('next/link', () => {
   };
 });
 
-import { PostStorageService } from '@/services/postService';
 const mockGetPosts = PostStorageService.getPosts as jest.MockedFunction<typeof PostStorageService.getPosts>;
 
 describe('SearchContainer', () => {

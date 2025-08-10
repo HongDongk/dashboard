@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CommentList from '../CommentList';
 import { Comment } from '@/types/comment';
+import { CommentStorageService } from '@/services/commentService';
 
 jest.mock('@/services/commentService', () => ({
   CommentStorageService: {
@@ -9,8 +10,6 @@ jest.mock('@/services/commentService', () => ({
     deleteComment: jest.fn(),
   },
 }));
-
-import { CommentStorageService } from '@/services/commentService';
 
 const mockGetCommentsByPostId = CommentStorageService.getCommentsByPostId as jest.MockedFunction<
   typeof CommentStorageService.getCommentsByPostId

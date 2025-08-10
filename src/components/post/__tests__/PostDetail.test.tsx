@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PostDetail from '../PostDetail';
+import { PostStorageService } from '@/services/postService';
 
 const mockPush = jest.fn();
 jest.mock('next/navigation', () => ({
@@ -16,7 +17,6 @@ jest.mock('@/services/postService', () => ({
   },
 }));
 
-import { PostStorageService } from '@/services/postService';
 const mockGetPostById = PostStorageService.getPostById as jest.MockedFunction<typeof PostStorageService.getPostById>;
 const mockDeletePost = PostStorageService.deletePost as jest.MockedFunction<typeof PostStorageService.deletePost>;
 
