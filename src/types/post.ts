@@ -11,6 +11,10 @@ export interface PostItemProps {
   createdAt: string;
 }
 
+export interface PostListProps {
+  searchQuery: string;
+}
+
 export interface PostDetailProps {
   postId: string;
 }

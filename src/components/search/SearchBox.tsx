@@ -2,10 +2,7 @@
 
 import { useState } from 'react';
 import styles from './SearchBox.module.css';
-
-interface SearchBoxProps {
-  onSearch: (query: string) => void;
-}
+import { SearchBoxProps } from '@/types/search';
 
 export default function SearchBox({ onSearch }: SearchBoxProps) {
   const [searchQuery, setSearchQuery] = useState('');

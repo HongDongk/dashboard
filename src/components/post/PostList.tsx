@@ -4,12 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import PostItem from './PostItem';
 import styles from './PostList.module.css';
-import { Post } from '@/types/post';
+import { Post, PostListProps } from '@/types/post';
 import { PostStorageService } from '@/services/postService';
-
-interface PostListProps {
-  searchQuery: string;
-}
 
 export default function PostList({ searchQuery }: PostListProps) {
   const [posts, setPosts] = useState<Post[]>([]);
