@@ -15,9 +15,17 @@ const mockCreateComment = CommentStorageService.createComment as jest.MockedFunc
 >;
 
 describe('CommentForm', () => {
+  let mockAlert: jest.SpyInstance;
+  let mockConsoleError: jest.SpyInstance;
   beforeEach(() => {
     mockOnCommentAdded.mockClear();
     mockCreateComment.mockClear();
+    mockAlert = jest.spyOn(window, 'alert').mockImplementation(() => {});
+    mockConsoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it('댓글 내용을 입력할 수 있는지 확인', async () => {

@@ -19,9 +19,11 @@ const mockDeleteComment = CommentStorageService.deleteComment as jest.MockedFunc
 >;
 
 describe('CommentList', () => {
+  let mockConsoleError: jest.SpyInstance;
   beforeEach(() => {
     mockGetCommentsByPostId.mockClear();
     mockDeleteComment.mockClear();
+    mockConsoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
   });
 
   it('댓글이 없을 때 빈 상태가 올바르게 표시되는지 확인', async () => {
@@ -71,7 +73,7 @@ describe('CommentList', () => {
 
     mockGetCommentsByPostId.mockReturnValueOnce(mockComments).mockReturnValueOnce([]);
 
-    mockDeleteComment.mockReturnValue(true);
+    mockDeleteComment.mockReturnValue(undefined);
 
     const mockConfirm = jest.fn().mockReturnValue(true);
     Object.defineProperty(window, 'confirm', { value: mockConfirm, writable: true });
@@ -100,7 +102,9 @@ describe('CommentList', () => {
     const mockComments: Comment[] = [{ id: 1, postId: 1, content: '테스트 댓글', createdAt: '2024-01-01T12:00:00Z' }];
 
     mockGetCommentsByPostId.mockReturnValue(mockComments);
-    mockDeleteComment.mockReturnValue(false);
+    mockDeleteComment.mockImplementation(() => {
+      throw new Error('댓글을 찾을 수 없습니다.');
+    });
 
     const mockConfirm = jest.fn().mockReturnValue(true);
     Object.defineProperty(window, 'confirm', { value: mockConfirm, writable: true });
