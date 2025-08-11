@@ -9,12 +9,12 @@ jest.mock('@/services/commentService', () => ({
   },
 }));
 
-describe('CommentForm', () => {
-  const mockOnCommentAdded = jest.fn();
-  const mockCreateComment = CommentStorageService.createComment as jest.MockedFunction<
-    typeof CommentStorageService.createComment
-  >;
+const mockOnCommentAdded = jest.fn();
+const mockCreateComment = CommentStorageService.createComment as jest.MockedFunction<
+  typeof CommentStorageService.createComment
+>;
 
+describe('CommentForm', () => {
   beforeEach(() => {
     mockOnCommentAdded.mockClear();
     mockCreateComment.mockClear();
