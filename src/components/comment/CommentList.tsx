@@ -32,15 +32,11 @@ export default function CommentList({ postId }: CommentListProps) {
 
   const handleCommentDelete = (commentId: number) => {
     try {
-      const success = CommentStorageService.deleteComment(commentId);
-      if (success) {
-        loadComments();
-      } else {
-        alert('댓글 삭제에 실패했습니다.');
-      }
+      CommentStorageService.deleteComment(commentId);
+      loadComments();
     } catch (error) {
       console.error('댓글 삭제 실패:', error);
-      alert('댓글 삭제 중 오류가 발생했습니다.');
+      alert('댓글 삭제에 실패했습니다.');
     }
   };
 

@@ -38,16 +38,12 @@ export default function PostDetail({ postId }: PostDetailProps) {
     setIsDeleting(true);
 
     try {
-      const success = PostStorageService.deletePost(post.id);
-      if (success) {
-        router.push('/');
-      } else {
-        alert('게시글 삭제에 실패했습니다.');
-      }
+      PostStorageService.deletePost(post.id);
     } catch (error) {
       console.error('게시글 삭제 실패:', error);
-      alert('게시글 삭제 중 오류가 발생했습니다.');
+      alert('게시글 삭제에 실패했습니다.');
     } finally {
+      router.push('/');
       setIsDeleting(false);
     }
   };

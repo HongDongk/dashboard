@@ -56,16 +56,15 @@ export class CommentStorageService {
   }
 
   // 댓글 삭제
-  static deleteComment(id: number): boolean {
+  static deleteComment(id: number): void {
     const comments = this.getComments();
     const filteredComments = comments.filter((comment) => comment.id !== id);
 
     if (filteredComments.length === comments.length) {
-      return false;
+      throw new Error('댓글을 찾을 수 없습니다.');
     }
 
     this.saveComments(filteredComments);
-    return true;
   }
 
   // 특정 게시글의 모든 댓글 삭제

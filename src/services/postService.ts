@@ -55,16 +55,15 @@ export class PostStorageService {
   }
 
   // 게시글 삭제
-  static deletePost(id: number): boolean {
+  static deletePost(id: number): void {
     const posts = this.getPosts();
     const filteredPosts = posts.filter((post) => post.id !== id);
 
     if (filteredPosts.length === posts.length) {
-      return false;
+      throw new Error('게시글을 찾을 수 없습니다.');
     }
 
     this.savePosts(filteredPosts);
     CommentStorageService.deleteCommentsByPostId(id);
-    return true;
   }
 }
